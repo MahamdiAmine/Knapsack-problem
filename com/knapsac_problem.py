@@ -14,7 +14,7 @@ import numpy as np
 class Knapsac:
 
 # the knapSac function takes the n objects and returns the matrix of the max values
-    def knapSack(self,max_weight, weight, value):
+    def knapSack(max_weight, weight, value):
         n = len(value)
         matrix = [[0 for x in range(max_weight + 1)] for x in range(n + 1)]
         for i in range(n + 1):
@@ -29,7 +29,7 @@ class Knapsac:
 
 
 # checking to see which items will go into our knapsack
-    def check_items(self,weight, matrix, max_weight):
+    def check_items(weight, matrix, max_weight):
         # I'M NOT SURE THIS WILL WORK CORRECTLY!!!!!!!!!!
         col = max_weight
         packed = []

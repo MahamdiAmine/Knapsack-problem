@@ -19,4 +19,6 @@ class Object:
         return self.value
     def get_id(self):
         return self.id
+    def printObject(self):
+        print(self.id,self.weight,self.value)
 
