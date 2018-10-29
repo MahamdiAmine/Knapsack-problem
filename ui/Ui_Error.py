@@ -7,6 +7,7 @@
 from PyQt5 import QtCore, QtWidgets
 
 class Ui_KnapsacError(object):
+    # #this class represents the Error Dialog if the user enter a non valid number
     def setupUi(self, KnapsacError):
         KnapsacError.setObjectName("Knapsac Error !")
         KnapsacError.resize(400, 300)

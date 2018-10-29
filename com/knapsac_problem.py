@@ -15,6 +15,7 @@ class Knapsac:
 
 # the knapSac function takes the n objects and returns the matrix of the max values
     def knapSack(max_weight, weight, value):
+        #Apply the definition(recursive equations )
         n = len(value)
         matrix = [[0 for x in range(max_weight + 1)] for x in range(n + 1)]
         for i in range(n + 1):
@@ -30,7 +31,6 @@ class Knapsac:
 
 # checking to see which items will go into our knapsack
     def check_items(weight, matrix, max_weight):
-        # I'M NOT SURE THIS WILL WORK CORRECTLY!!!!!!!!!!
         col = max_weight
         packed = []
         for i in range(len(weight) - 1, -1, -1):
@@ -39,6 +39,6 @@ class Knapsac:
             if matrix[i][col] != matrix[i - 1][col]:
                 packed.insert(0, i)
                 col -= weight[i]
-        packed = np.unique(packed)  # is it correct ??????
+        packed = np.unique(packed)  #do not pack double items
         return packed
-# TODO the Graphical interface !!
+

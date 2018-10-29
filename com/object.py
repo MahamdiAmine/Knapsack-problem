@@ -5,6 +5,7 @@
 ###########################################################
 
 class Object:
+    #this class represents the item proprieties: id,weight,value,packed or not
     def __init__(self,id,weight,value):
         self._id=id
         self._weight=weight

@@ -9,6 +9,8 @@ from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Dialog(object):
+    #this class represents the Frame needed to ask the user to enter the max
+    #NOTE: the default value of max weight is zero
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)

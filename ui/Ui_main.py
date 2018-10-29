@@ -6,7 +6,6 @@
 
 import PyQt5
 import time
-import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QTableWidget, QHeaderView, QTableWidgetItem, QWidget, QHBoxLayout
@@ -21,15 +20,18 @@ except AttributeError:
       _fromUtf8 = lambda s: s
 
 class Ui_MainWindow(object):
+    # the  main Ui class
+    #u can easely inderstand the code , the variable names are representatives
 
     def __init__(self):
-        self.items=[]
+        #init the params
+        self.items=[]#items vector
         self.maxWeight=0
-        self.rowCount = 50
+        self.rowCount = 60
         self.columnCount = 4
         self.stylesheetTables = "QHeaderView::section{Background-color:#224966; border - radius: 14 px;}"
     def setupUi(self, MainWindow):
-
+        #Setup the Ui
         css='''/*  Author mahamdi amine
                    Github https://github.com/MahamdiAmine */
                    
@@ -50,7 +52,7 @@ class Ui_MainWindow(object):
                     '''
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(772, 549)
-        MainWindow.setStyleSheet(css)
+        MainWindow.setStyleSheet(css)# apply the styleSheet
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.submitButton = QtWidgets.QPushButton(self.centralwidget)
@@ -86,7 +88,7 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(590, 10, 151, 131))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("./img/knap.png"))
+        self.label.setPixmap(QtGui.QPixmap("./img/knap.png"))#Sac icon
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.lcdNumber = QtWidgets.QLCDNumber(self.centralwidget)
@@ -123,16 +125,17 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def setupTable(self):
+        #setup the table when the user wants the add objects
         def __init__(self, parent=None):
             super().__init__(parent)
         self.items.clear()
         self.table = QTableWidget()
-        self.table.setFixedSize(500,400)
+        self.table.setFixedSize(500,400)#fix the size
         self.table.setWindowTitle("Please submit objects proprieties ")
         self.table.setColumnCount(self.columnCount)
         self.table.setRowCount(self.rowCount)
         self.table.setHorizontalHeaderLabels(['Object Id', 'Weight', 'Value','Confirm' ])
-        self.table.verticalHeader().hide()
+        self.table.verticalHeader().hide()#do not need a vertical header
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
         self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
@@ -147,6 +150,7 @@ class Ui_MainWindow(object):
             self.table.setItem(row, 0, item)
         for i in range(self.table.rowCount()):
             ch = QtWidgets.QCheckBox(parent=self.table)
+            #if the check box state is changed ,onStateChanged method is invoked
             ch.clicked.connect(lambda checked, row=i, col=3: self.onStateChanged(checked, row, col))
             cell_widget = QWidget()
             lay_out = QHBoxLayout(cell_widget)
@@ -158,10 +162,12 @@ class Ui_MainWindow(object):
         self.table.show()
 
     def packedItems(self):
+        #Display packed items in a table
+        #almoust the same as previous table , just change the check box with a label
         def __init__(self, parent=None):
             super().__init__(parent)
         self.selectedItemsTable = QTableWidget()
-        self.selectedItemsTable.setStyleSheet(self.stylesheetTables)
+        self.selectedItemsTable.setStyleSheet(self.stylesheetTables)#apply the css
         self.selectedItemsTable.setFixedSize(500, 400)
         self.selectedItemsTable.setWindowTitle("Packed Items : ")
         self.selectedItemsTable.setColumnCount(self.columnCount)
@@ -183,7 +189,7 @@ class Ui_MainWindow(object):
                 item_w.setText(str(self.items[i].weight))
                 item_w.setTextAlignment(Qt.AlignHCenter)
                 item_v.setText(str(self.items[i].value))
-                item_v.setTextAlignment(Qt.AlignHCenter)
+                item_v.setTextAlignment(Qt.AlignHCenter)#center the text
                 item_id.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 item_w.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 item_v.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
@@ -224,33 +230,35 @@ class Ui_MainWindow(object):
                                                       "</span></p><p><span style=\" font-size:10pt;color :#000000\"> than or equal to a given limit and the total value is as large as possible.</span></p></body></html>"))
 
     def calculate(self):
+        #calculate the results and update the progress bar
         self.progressBar.show()
-        for i in range(33):
+        for i in range(33): #progress bar level =33
             time.sleep(0.01)
             self.progressBar.setValue(i)
         self.lcdNumber.show()
         self.maxValueLabel.show()
-        w = []
-        v = []
-        for x in range(len(self.items)):
+        w = []#weights vector
+        v = []#values vector
+        for x in range(len(self.items)):#
             w.insert(x, self.items[x].weight)
             v.insert(x, self.items[x].value)
         matrix=K.knapSack(self.maxWeight, w, v)
-        for i in range(33):
+        for i in range(33):#progress bar level =66
             time.sleep(0.01)
             self.progressBar.setValue(i+33)
         selectedItems=K.check_items(w, matrix, self.maxWeight)
-        for i in range(35):
+        for i in range(35):#progress bar level =66 to 100
             time.sleep(0.01)
             self.progressBar.setValue(i+66)
         self.lcdNumber.setStyleSheet("""QLCDNumber {background-color:green; color: red;}""")
-        self.lcdNumber.display(matrix[len(w)][self.maxWeight])
-        for counter in range(len(selectedItems)):
+        self.lcdNumber.display(matrix[len(w)][self.maxWeight])#display the maximum value
+        for counter in range(len(selectedItems)):#mark packed items as selected
             index=selectedItems[counter]
             self.items[index].set_packed(1)
         self.viewSelectedItemsButton.show()
 
     def open_dialog(self):
+        #open the Frame that asks the user tp enter the max value
         self.maxWeightLabel.setSizePolicy(30,30)
         self.maxWeightLabel.setText(str(self.maxWeight))
         self.maxWeightLabel.setStyleSheet("font: 30pt Comic Sans MS")
@@ -265,6 +273,7 @@ class Ui_MainWindow(object):
         self.maxWeight=text
         self.maxWeightLabel.setText(str(text))
     def openError(self):
+        #open the error caused by invalid number entered by the user
         dialog = QtWidgets.QDialog()
         dialog.ui = ErrorForm()
         dialog.ui.setupUi(dialog)
@@ -273,7 +282,9 @@ class Ui_MainWindow(object):
         dialog.show()
 
     def onStateChanged(self, checked, row, column):
-        if(checked):
+        #handle the event when the user check the check box
+        #by adding the current row as an item
+        if checked:
             try:
                 id = int(self.table.item(row, 0).text())
                 weight =int( self.table.item(row, 1).text())
@@ -290,6 +301,3 @@ class Ui_MainWindow(object):
             except Exception :
                 self.openError()
                 exit(2)
-
-
-# import ui_rc
