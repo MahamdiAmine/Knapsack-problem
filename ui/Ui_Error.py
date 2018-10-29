@@ -15,6 +15,7 @@ class Ui_KnapsacError(object):
         self.buttonBox.setOrientation(QtCore.Qt.Vertical)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
+        self.buttonBox.setStyleSheet("QPushButton:hover {background-color: #161CCB;color: #000000; qproperty-iconSize: 34px;}")
         self.label = QtWidgets.QLabel(KnapsacError)
         self.label.setGeometry(QtCore.QRect(30, 100, 321, 141))
         self.label.setObjectName("label")

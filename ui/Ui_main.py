@@ -4,11 +4,12 @@
 # Github https://github.com/MahamdiAmine                  #
 ###########################################################
 
+import PyQt5
 import time
 import numpy as np
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import  QTableWidget, QHeaderView, QTableWidgetItem
+from PyQt5.QtWidgets import QTableWidget, QHeaderView, QTableWidgetItem, QWidget, QHBoxLayout
 from com.knapsac_problem import Knapsac as K
 from com.object import Object
 from ui.Ui_maxWeight import Ui_Dialog as DialogForm
@@ -26,34 +27,29 @@ class Ui_MainWindow(object):
         self.maxWeight=0
         self.rowCount = 50
         self.columnCount = 4
+        self.stylesheetTables = "QHeaderView::section{Background-color:#224966; border - radius: 14 px;}"
     def setupUi(self, MainWindow):
 
         css='''/*  Author mahamdi amine
                    Github https://github.com/MahamdiAmine */
-   
-    QPushButton:hover {
-            background-color: #161CCB;
-            color: #000000; 
-    }
-    
-    QWidget { 
-        background-color: C65528;
-        color: #17BEFE
-    }
-    
-    QPushButton:pressed {
-    background-color: #bbdefb;
-    }
-    
-    /*
-    QLCDNumber
-    maxValueLabel
-    progressBar
-    */
-'''
+                   
+                    QPushButton:hover {
+                            background-color: #161CCB;
+                            color: #000000; 
+                            qproperty-iconSize: 34px;     
+                    }
+                   
+                   QWidget { 
+                        /*background-color: C65528;*/
+                        color: rgba(39, 102, 21, 0.88)
+                    }
+                    
+                    QPushButton:pressed {
+                        background-color: #bbdefb;
+                    }
+                    '''
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(772, 549)
-        # MainWindow.setStyleSheet(css)
         MainWindow.setStyleSheet(css)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -123,13 +119,6 @@ class Ui_MainWindow(object):
         self.progressBar.setObjectName("progressBar")
         self.progressBar.hide()
         MainWindow.setCentralWidget(self.centralwidget)
-        # self.statusbar = QtWidgets.QStatusBar(MainWindow)
-        # self.statusbar.setObjectName("statusbar")
-        # MainWindow.setStatusBar(self.statusbar)
-        # self.actionCheck_for_updates = QtWidgets.QAction(MainWindow)
-        # self.actionCheck_for_updates.setObjectName("actionCheck_for_updates")
-        # self.actionAbout = QtWidgets.QAction(MainWindow)
-        # self.actionAbout.setObjectName("actionAbout")
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -148,22 +137,31 @@ class Ui_MainWindow(object):
         self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
         self.table.horizontalHeader().setSectionResizeMode(3, QHeaderView.Stretch)
+        self.table.setStyleSheet(self.stylesheetTables)
         allRows = self.table.rowCount()
         for row in range(0, allRows):
             item = QTableWidgetItem()
             item.setText(str(row))
+            item.setTextAlignment(Qt.AlignHCenter)
             item.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
             self.table.setItem(row, 0, item)
         for i in range(self.table.rowCount()):
             ch = QtWidgets.QCheckBox(parent=self.table)
             ch.clicked.connect(lambda checked, row=i, col=3: self.onStateChanged(checked, row, col))
-            self.table.setCellWidget(i, 3, ch)
+            cell_widget = QWidget()
+            lay_out = QHBoxLayout(cell_widget)
+            lay_out.addWidget(ch)
+            lay_out.setAlignment(Qt.AlignCenter)
+            lay_out.setContentsMargins(0, 0, 0, 0)
+            cell_widget.setLayout(lay_out)
+            self.table.setCellWidget(i, 3, cell_widget)
         self.table.show()
 
     def packedItems(self):
         def __init__(self, parent=None):
             super().__init__(parent)
         self.selectedItemsTable = QTableWidget()
+        self.selectedItemsTable.setStyleSheet(self.stylesheetTables)
         self.selectedItemsTable.setFixedSize(500, 400)
         self.selectedItemsTable.setWindowTitle("Packed Items : ")
         self.selectedItemsTable.setColumnCount(self.columnCount)
@@ -181,8 +179,11 @@ class Ui_MainWindow(object):
                 item_v = QTableWidgetItem()
                 item_packed = QTableWidgetItem()
                 item_id.setText(str(self.items[i].id))
+                item_id.setTextAlignment(Qt.AlignHCenter)
                 item_w.setText(str(self.items[i].weight))
+                item_w.setTextAlignment(Qt.AlignHCenter)
                 item_v.setText(str(self.items[i].value))
+                item_v.setTextAlignment(Qt.AlignHCenter)
                 item_id.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 item_w.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
                 item_v.setFlags(Qt.ItemIsSelectable | Qt.ItemIsEnabled)
@@ -195,6 +196,7 @@ class Ui_MainWindow(object):
                     item_packed.setText("Packed")
                 else:
                     item_packed.setText("Not packed")
+                item_packed.setTextAlignment(Qt.AlignHCenter)
                 self.selectedItemsTable.setItem(i, 3, item_packed)
         self.selectedItemsTable.show()
         self.viewSelectedItemsButton.hide()
@@ -215,15 +217,15 @@ class Ui_MainWindow(object):
         self.viewSelectedItemsButton.hide()
         self.copyright.setText(_translate("MainWindow", "<html><head/><body><p><a href="
                                                         "\"https://github.com/MahamdiAmine/MahamdiAmine.github.io/blob/master/LICENSE.md\"><span style=\" text-decoration: underline; color:#0000ff;\">Copyright © 2018 Mahamdi Mohammed and Adrao Nassim</span></a></p><p><br/></p></body></html>"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; font-style:italic;\"> Resolving the Knapsac problem with Dynamic programation </span></p></body></html>"))
+        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:16pt; font-weight:600; color :red;font-style:italic;\"> Resolving the Knapsac problem with Dynamic programation </span></p></body></html>"))
         self.maxValueLabel.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\"> Max value :</span></p></body></html>"))
-        self.label_4.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;\">    Given a set of items, each with a weight and a value,determine the number of "
-                                                       " </span></p><p><span style=\" font-size:10pt;\"> each item to include in a collection so that the total weight is less"
-                                                      "</span></p><p><span style=\" font-size:10pt;\"> than or equal to a given limit and the total value is as large as possible.</span></p></body></html>"))
+        self.label_4.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt;color :#000000\">    Given a set of items, each with a weight and a value,determine the number of "
+                                                       " </span></p><p><span style=\" font-size:10pt;color :#000000\"> each item to include in a collection so that the total weight is less"
+                                                      "</span></p><p><span style=\" font-size:10pt;color :#000000\"> than or equal to a given limit and the total value is as large as possible.</span></p></body></html>"))
 
     def calculate(self):
         self.progressBar.show()
-        for i in range(100):
+        for i in range(33):
             time.sleep(0.01)
             self.progressBar.setValue(i)
         self.lcdNumber.show()
@@ -231,13 +233,16 @@ class Ui_MainWindow(object):
         w = []
         v = []
         for x in range(len(self.items)):
-            self.items[x].printObject()
             w.insert(x, self.items[x].weight)
             v.insert(x, self.items[x].value)
         matrix=K.knapSack(self.maxWeight, w, v)
+        for i in range(33):
+            time.sleep(0.01)
+            self.progressBar.setValue(i+33)
         selectedItems=K.check_items(w, matrix, self.maxWeight)
-        print(np.matrix(matrix))
-        print(selectedItems)
+        for i in range(35):
+            time.sleep(0.01)
+            self.progressBar.setValue(i+66)
         self.lcdNumber.setStyleSheet("""QLCDNumber {background-color:green; color: red;}""")
         self.lcdNumber.display(matrix[len(w)][self.maxWeight])
         for counter in range(len(selectedItems)):
@@ -280,11 +285,9 @@ class Ui_MainWindow(object):
                 #     self.openError()
                 self.items.insert(index, Object(id, weight, value))
             except ValueError:
-                print("Oops!  That was no valid number.  Try again...")
                 self.openError()
                 exit(1)
             except Exception :
-                print("Oops!  That was no valid number.  Try again...")
                 self.openError()
                 exit(2)
 
