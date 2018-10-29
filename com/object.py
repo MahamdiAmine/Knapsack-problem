@@ -5,20 +5,47 @@
 ###########################################################
 
 class Object:
-    packed=0
     def __init__(self,id,weight,value):
-        self.id=id
-        self.weight=weight
-        self.value=value
-        packed=0
-    def is_packed(picked):
-        packed=picked
-    def get_weight(self):
-        return self.weight
-    def get_value(self):
-        return self.value
-    def get_id(self):
-        return self.id
-    def printObject(self):
-        print(self.id,self.weight,self.value)
+        self._id=id
+        self._weight=weight
+        self._value=value
+        self._packed=0
 
+    @property
+    def id(self):
+        return self._id
+
+    @id.setter
+    def id(self, value):
+        self._id = value
+
+    @property
+    def packed(self):
+        return self._packed
+
+    @packed.setter
+    def packed(self, value):
+        self._packed = value
+
+    @property
+    def weight(self):
+        return self._weight
+
+    @weight.setter
+    def weight(self, value):
+        self._weight = value
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, value):
+        self._value = value
+
+
+    def printObject(self):
+        print(self._id,self._weight,self._value,self._packed)
+
+    def set_packed(self,v):
+        self._packed=v

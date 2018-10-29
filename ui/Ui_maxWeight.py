@@ -1,5 +1,11 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog
+#!/usr/bin/env python3                                    #
+# -.- coding: utf-8 -.-                                   #
+# Author mahamdi amine                                    #
+# Github https://github.com/MahamdiAmine                  #
+###########################################################
+
+
+from PyQt5 import QtCore, QtWidgets
 
 
 class Ui_Dialog(object):
@@ -31,12 +37,9 @@ class Ui_Dialog(object):
         try:
             txt = int(self.lineEdit.text())
         except ValueError:
-            print(" dia acc")
-            exit(88)
+            print("Oops! That was no valid number! Try again...")
         except Exception:
-            print("dia acept2")
-            exit(99)
-        return txt
-        QDialog.done(0)
+            print("Oops! That was no valid number! Try again...")
+        return max(txt,0)
 
 
