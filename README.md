@@ -10,3 +10,7 @@ Completely free (GNU)! See [LICENSE](LICENSE) for more.
 ## Contact
 
 To contact me, [click here](https://mahamdiamine.github.io/).
+
+## Read the Report
+
+To read the documentation [click here](https://github.com/MahamdiAmine/Knapsack-problem/raw/master/Report/Report.pdf).
