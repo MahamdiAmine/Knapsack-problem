@@ -4,7 +4,10 @@
 # Github https://github.com/MahamdiAmine                  #
 ###########################################################
 
+import PyQt5
 from PyQt5 import QtCore, QtWidgets
+from PyQt5.uic.properties import QtGui
+
 
 class Ui_KnapsacError(object):
     # #this class represents the Error Dialog if the user enter a non valid number

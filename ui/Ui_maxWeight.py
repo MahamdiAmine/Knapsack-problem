@@ -4,7 +4,7 @@
 # Github https://github.com/MahamdiAmine                  #
 ###########################################################
 
-
+import PyQt5
 from PyQt5 import QtCore, QtWidgets
 
 

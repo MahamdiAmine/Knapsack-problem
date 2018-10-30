@@ -7,6 +7,20 @@ Resolving the classical Knapsack problem:
 
 Completely free (GNU)! See [LICENSE](LICENSE) for more.
 
+##Install
+
+For Debian based systems:
+make sure you have  Python 3.6  installed, and run the following commands :    
+                                                                              
+```
+$ sudo apt-get install python3 python3-pip                                
+$ git clone https://github.com/MahamdiAmine/Knapsack-problem.git                                
+$ cd Knapsack-problem/
+$ virtualenv --python=python3.5 env
+$ source env/bin/activate
+$ pip install -r requirements.txt
+```
+
 ## Contact
 
 To contact me, [click here](https://mahamdiamine.github.io/).

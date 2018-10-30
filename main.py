@@ -6,9 +6,9 @@
 
 
 import sys
+import PyQt5
 from PyQt5 import QtWidgets
 from ui.Ui_main import Ui_MainWindow
-
 
 class ApplicationWindow(QtWidgets.QMainWindow):
     # Instantiate the app

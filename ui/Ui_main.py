@@ -53,6 +53,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(772, 549)
         MainWindow.setStyleSheet(css)# apply the styleSheet
+        MainWindow.setWindowIcon(QtGui.QIcon('./img/check_mark.png'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.submitButton = QtWidgets.QPushButton(self.centralwidget)
@@ -130,6 +131,7 @@ class Ui_MainWindow(object):
             super().__init__(parent)
         self.items.clear()
         self.table = QTableWidget()
+        self.table.setWindowIcon(QtGui.QIcon("./img/check_mark.png"))
         self.table.setFixedSize(500,400)#fix the size
         self.table.setWindowTitle("Please submit objects proprieties ")
         self.table.setColumnCount(self.columnCount)
@@ -167,6 +169,7 @@ class Ui_MainWindow(object):
         def __init__(self, parent=None):
             super().__init__(parent)
         self.selectedItemsTable = QTableWidget()
+        self.selectedItemsTable.setWindowIcon(QtGui.QIcon("./img/check_mark.png"))
         self.selectedItemsTable.setStyleSheet(self.stylesheetTables)#apply the css
         self.selectedItemsTable.setFixedSize(500, 400)
         self.selectedItemsTable.setWindowTitle("Packed Items : ")
@@ -264,6 +267,7 @@ class Ui_MainWindow(object):
         self.maxWeightLabel.setStyleSheet("font: 30pt Comic Sans MS")
         self.maxWeightLabel.show()
         dialog = QtWidgets.QDialog()
+        dialog.setWindowIcon(QtGui.QIcon("./img/check_mark.png"))
         dialog.ui = DialogForm()
         dialog.ui.setupUi(dialog)
         dialog.setFixedSize(415,320)
