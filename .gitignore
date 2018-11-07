@@ -1,3 +1,7 @@
 .idea/*
 ui/__pycache__/*
 com/__pycache__/*
+Report/*.aux
+Report/*.log
+Report/*.toc
+Report/*.synctex.*

@@ -4,9 +4,9 @@
 # Github https://github.com/MahamdiAmine                  #
 ###########################################################
 
+import numpy as np
 
 class Knapsac:
-
 # the knapSac function takes the n objects and returns the matrix of the max values
     def knapSack(max_weight, weight, value):
         #Apply the definition(recursive equations )
