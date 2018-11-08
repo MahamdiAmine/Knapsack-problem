@@ -89,10 +89,27 @@
 		\item On lit la capacité du sac à dos, nommée \emph{maxWeight}.
 		\item On lit n objets et pour chaque objet on introduit le poids et le gain correspondant sous forme de tableau comme le montre la figure suivante:
 		\item On construit une matrice nommée \emph{matrix} de n+1 lignes (la 1 ère ligne d'indice 0 contient des 0 partout, utile juste pour l'utiliation des équations de réferrence) et maxWeight+1 colone (la 1 ère colone d'indice 0 contient des 0 partout, utile juste pour l'utiliation des équations de réferrence)
-		\item On remplit cette matrice en utilisant les équations de réferrence (voir section 2.2).
-		\item après la rempli de cette matrice , on trouve le gain maximun dans \emph{matrix[n][maxWeight]}.
+		\item On remplit cette matrice en utilisant les équations de référence (voir section 2.2).
+		\item après la rempli de cette matrice , on trouve le gain maximum dans \emph{matrix[n][maxWeight]}.
+		\item Pour la recherche des objets choisis, on procède à la comparaison des valeurs de la dernière colonne comme suit
+		\begin{enumerate}
+		\item On initialise un pointeur entier k à n-1 .
+		\item on compare le gain matrix[k][maxWeight] avec matrix[k+1][maxWeight].
+		\item si matrix[k][maxWeight] != matrix[k+1][maxWeight] alors élément k choisi
+		\item décrémenter k et si k != 1 aller à 2.
+		\end{enumerate}
 	\end{enumerate}
-	
-		
+	\paragraph{}
+	Les figures suivantes montrent les résultats de l'implémentation
+	\chapter{Calcul de la complexité}
+	La complexité de l'algorithme: O(m^2)
+	On doit remplir la matrice de n lignes et p colonnes, don la complexité est O(m^2) tel que m=max(n,p)
+	Puis on parcourt la dernière colonne (complexité= O(n)) n est le nombre de lignes
+	Donc la complexité final sera le max(O(m^2),O(p))=O(m^2)
+	\chapter{Conclusion}
+	La programmation dynamique sert à résoudre de très grand nombre de problèmes, on remarque cela dans ce TP.
+	La complexité de la programmation dynamique est polynomial tout en gardant la simplicité de la récursivité avec une complexité base
+	La programmation dynamique est un cas de l'intelligence artificielle 
+	Le problème de sac à dos est l'un des problèmes classique en informatique, qui reste jusqu'ici valable pour les problèmes qui sont résolu en conséquent.
 		
 \end{document}
