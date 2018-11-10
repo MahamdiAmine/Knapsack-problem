@@ -102,16 +102,15 @@
 	\end{enumerate}
 	\par{}
 	Les figures suivantes montrent les résultats de l'implémentation		
-	\section{Calcul de la complexité}
+	\chapter{Calcul de la complexité}
 	\par{} 
 	
-	La complexité de l'algorithme : O($m^{2}$)
-	%\subsection{preuve}
-	
-	\paragraph*{preuve}:
-	On doit remplir la matrice de n lignes et p colonnes, don la complexité est O($m^{2}$) tel que m=max(n,p); 	Puis on parcourt la dernière colonne (complexité= O(n)) n est le nombre de lignes
+	La complexité de l'algorithme : O(\[m^{2}\])
+	\paragraph{preuve}
 	\par{}
-	Donc la complexité finale sera : max(O($m^{2}$), O(n)) = $O(m^{2})$
+	On doit remplir la matrice de n lignes et p colonnes, don la complexité est O(\[m^{2}\]) tel que m=max(n,p); 	Puis on parcourt la dernière colonne (complexité= O(n)) n est le nombre de lignes
+	\par{}
+	Donc la complexité finale sera : max(O(\[m^{2}\]), O(n)) = O($m^{2}$)
 	\chapter{Conclusion}
 	\par{} 
 	La programmation dynamique sert à résoudre de très grand nombre de problèmes, on remarque cela dans ce TP.
