@@ -14,6 +14,14 @@
 \usepackage[protrusion=true, expansion=true]{microtype}
 \usepackage[french,english]{babel}
 \usepackage{sectsty}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 \usepackage{url, lipsum}
 \usepackage[utf8]{inputenc}
 \usepackage{indentfirst}
@@ -85,7 +93,15 @@
 	\section{Approche choisie}
 	On a utilisé l'approche ascendante (voir introduction)
 	\section{Les équations de récurrence}
-	(les equations mathématiques à écrire)
+	\[
+    P_{ij}=\left\{
+                \begin{array}{ll}
+                  0 $ si $ i=0$ ou $j=0\\
+                  P_{i-1j} $ si $ j<w_{i} , i>0\\
+                  \max\lbrace P_{i-1,j}, P_{i-1,j-w_{i}}+v_{i} \rbrace
+                \end{array}
+              \right.
+  \]
 	\section{Processus}\begin{enumerate}
 		\item On lit la capacité du sac à dos, nommée \emph{maxWeight}.
 		\item On lit n objets et pour chaque objet on introduit le poids et le gain correspondant sous forme de tableau comme le montre la figure suivante:
@@ -97,7 +113,7 @@
 		\item On initialise un pointeur entier k à n-1 .
 		\item on compare le gain matrix[k][maxWeight] avec matrix[k+1][maxWeight].
 		\item si matrix[k][maxWeight] != matrix[k+1][maxWeight] alors élément k choisi
-		\item décrémenter k et si k != 1 aller à 2.
+		\item Soustraire le poids de l'élément choisi de k et si k != 1 aller à 2.
 		\end{enumerate}
 	\end{enumerate}
 	\par{}

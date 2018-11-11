@@ -37,6 +37,7 @@
 
 \begin{document}
 	\renewcommand{\contentsname}{Table des Matières}
+	\
 	\author{}        
 	\date{} 
 	\title{  \textsc{ Le problème du Sac à dos}
@@ -85,7 +86,15 @@
 	\section{Approche choisie}
 	On a utilisé l'approche ascendante (voir introduction)
 	\section{Les équations de récurrence}
-	(les equations mathématiques à écrire)
+	\[
+    P_{ij}=\left\{
+                \begin{array}{ll}
+                  0 $ si $ i=0$ ou $j=0\\
+                  P_{i-1j} $ si $ j<w_{i} , i>0\\
+                  \max\lbrace P_{i-1,j}, P_{i-1,j-w_{i}}+v_{i} \rbrace
+                \end{array}
+              \right.
+  \]
 	\section{Processus}\begin{enumerate}
 		\item On lit la capacité du sac à dos, nommée \emph{maxWeight}.
 		\item On lit n objets et pour chaque objet on introduit le poids et le gain correspondant sous forme de tableau comme le montre la figure suivante:
@@ -97,20 +106,21 @@
 		\item On initialise un pointeur entier k à n-1 .
 		\item on compare le gain matrix[k][maxWeight] avec matrix[k+1][maxWeight].
 		\item si matrix[k][maxWeight] != matrix[k+1][maxWeight] alors élément k choisi
-		\item décrémenter k et si k != 1 aller à 2.
+		\item Soustraire le poids de l'élément choisi de k et si k != 1 aller à 2.
 		\end{enumerate}
 	\end{enumerate}
 	\par{}
 	Les figures suivantes montrent les résultats de l'implémentation		
-	\chapter{Calcul de la complexité}
+	\section{Calcul de la complexité}
 	\par{} 
 	
-	La complexité de l'algorithme : O(\[m^{2}\])
-	\paragraph{preuve}
+	La complexité de l'algorithme : O($m^{2}$)
+	%\subsection{preuve}
+	
+	\paragraph*{preuve}:
+	On doit remplir la matrice de n lignes et p colonnes, don la complexité est O($m^{2}$) tel que m=max(n,p); 	Puis on parcourt la dernière colonne (complexité= O(n)) n est le nombre de lignes
 	\par{}
-	On doit remplir la matrice de n lignes et p colonnes, don la complexité est O(\[m^{2}\]) tel que m=max(n,p); 	Puis on parcourt la dernière colonne (complexité= O(n)) n est le nombre de lignes
-	\par{}
-	Donc la complexité finale sera : max(O(\[m^{2}\]), O(n)) = O($m^{2}$)
+	Donc la complexité finale sera : max(O($m^{2}$), O(n)) = $O(m^{2})$
 	\chapter{Conclusion}
 	\par{} 
 	La programmation dynamique sert à résoudre de très grand nombre de problèmes, on remarque cela dans ce TP.
