@@ -27,12 +27,12 @@ class Knapsac:
     def check_items(weight, matrix, max_weight):
         col = max_weight
         packed = []
-        for i in range(len(weight) - 1, -1, -1):
-            if i == 0 and matrix[i][col] != 0:
-                packed.insert(0, i)
+        for i in range(len(weight) , 0, -1):
+            if i == 1 and matrix[i][col] != 0:
+                packed.insert(0, i-1)
             if matrix[i][col] != matrix[i - 1][col]:
-                packed.insert(0, i)
-                col -= weight[i]
+                packed.insert(0, i-1)
+                col -= weight[i-1]
         packed = np.unique(packed)  #do not pack double items
         return packed
 
