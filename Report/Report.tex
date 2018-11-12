@@ -39,23 +39,27 @@
 \fancyhead[L]{fm\char`_mahamdi@esi.dz    }
 \fancyhead[R]{fn\char`_adrao@esi.dz}
 \fancyfoot[R]{Page \thepage\ sur \pageref{LastPage}}
+\usepackage{placeins}
 %-------------------------------------------------------------------------------
 % TITLE PAGE
 %-------------------------------------------------------------------------------
 
 \begin{document}
 	\renewcommand{\contentsname}{Table des Matières}
-	\author{}        
+\renewcommand{\listfigurename}{Table des Figures}
+
+	\author{MAHAMDI Mohammed & ADRAO Nassim}        
 	\date{} 
 	\title{  \textsc{ Le problème du Sac à dos}
 		\\ [2.0cm]
 		\HRule{0.5pt} \\
-		\LARGE \textbf{\uppercase{Rapport de Stage }}
+		\LARGE \textbf{\uppercase{Rapport de TP1 }}
 		\HRule{2pt} \\ [0.5cm]
 		\normalsize \today \vspace*{5\baselineskip}}
 	\maketitle
 	\tableofcontents
-	\renewcommand{\contentsname}
+\newpage
+\listoffigures 
 	\newpage
 	%------------------------------------------------------------------------------
 	% Section title formatting
@@ -110,14 +114,41 @@
 		\item après la rempli de cette matrice , on trouve le gain maximum dans \emph{matrix[n][maxWeight]}.
 		\item Pour la recherche des objets choisis, on procède à la comparaison des valeurs de la dernière colonne comme suit
 		\begin{enumerate}
-		\item On initialise un pointeur entier k à n-1 .
-		\item on compare le gain matrix[k][maxWeight] avec matrix[k+1][maxWeight].
-		\item si matrix[k][maxWeight] != matrix[k+1][maxWeight] alors élément k choisi
-		\item Soustraire le poids de l'élément choisi de k et si k != 1 aller à 2.
+		\item On initialise un pointeur entier k à n, et un pointeur col à  maxWeight.
+		\item on compare le gain matrix[k][col] avec matrix[k+1][col].
+		\item si matrix[k][col] != matrix[k+1][col] alors élément k choisi
+		\item Soustraire le poids $w_{i}$de l'élément choisi de col, on décrémente le k et si k != 1 aller à 2.
 		\end{enumerate}
 	\end{enumerate}
 	\par{}
-	Les figures suivantes montrent les résultats de l'implémentation		
+	Les figures suivantes montrent les résultats de l'implémentation :
+	\begin{figure}[hp]
+\centering
+\includegraphics[scale=1, width=18cm]{../screenshots/1.png}
+	\caption{Page d'acceuil}
+	\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1, width=18cm]{../screenshots/2.png}
+	\caption{Saisie de la taile de sac à dos}	
+	\end{figure}
+	\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1, width=18cm]{../screenshots/3.png}
+	\caption{Saisie des donnée concernant les objets}
+	\end{figure}
+	\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1, width=18cm]{../screenshots/4.png}
+	\caption{Calcul de gain maximal}
+	\end{figure}
+	\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1, width=18cm]{../screenshots/5.png}
+	\caption{Affichage d'une combinaison des éléments choisi satisfaisant les contraintes}
+	\end{figure}
+	\newpage	
+	\FloatBarrier
 	\section{Calcul de la complexité}
 	\par{} 
 	
