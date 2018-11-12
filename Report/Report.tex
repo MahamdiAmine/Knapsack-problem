@@ -77,12 +77,12 @@
 	\section{Approche de solution}
 %\addcontentsline{toc}{section}{Introduction}
 \par{}
-	Pour résoudre ce problème, on peut utiliser la solution classique ou glouton consistant à essayer tous les cas possible. Cela est innéficace pour des valeurs de n supérieur à 8 par exemple.
+	Pour résoudre ce problème, on peut utiliser la solution classique ou glouton consistant à essayer tous les cas possible. Cela est inéfficace pour des valeurs de n supérieures à 8 par exemple.
 \par{}
 	C'est pour cela que la programmation dynamique est la solution la plus adéquate, et c'est le but de ce TP1.
 	
 	\section{Principe de la programmtion dynamique}
-	La solution récursive est la plus évidente mais la plus coûteuse, la programmation dynamique est par conséquent une amélioration qui consiste à sauvegarder les valeurs des transitions déja calculer pour ne pas répéter les calculs inutile.
+	La solution récursive est la plus évidente mais la plus coûteuse, la programmation dynamique est par conséquent une amélioration qui consiste à sauvegarder les valeurs des transitions déja calculées pour ne pas répéter les calculs inutiles.
 	\par{}
 	Il existe deux approches:
 	\begin{itemize}
@@ -101,23 +101,35 @@
     P_{ij}=\left\{
                 \begin{array}{ll}
                   0 $ si $ i=0$ ou $j=0\\
-                  P_{i-1j} $ si $ j<w_{i} , i>0\\
+                  P_{i-1,j} $ si $ j<w_{i} , i>0\\
                   \max\lbrace P_{i-1,j}, P_{i-1,j-w_{i}}+v_{i} \rbrace
                 \end{array}
               \right.
   \]
 	\section{Processus}\begin{enumerate}
 		\item On lit la capacité du sac à dos, nommée \emph{maxWeight}.
+		\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1, width=18cm]{../screenshots/2.png}
+	\caption{Saisie de la taile de sac à dos}	
+	\end{figure}
+\FloatBarrier
 		\item On lit n objets et pour chaque objet on introduit le poids et le gain correspondant sous forme de tableau comme le montre la figure suivante:
+			\begin{figure}[h!]
+	\centering
+	\includegraphics[scale=1, width=18cm]{../screenshots/3.png}
+	\caption{Saisie des données concernant les objets}
+	\end{figure}
+	\FloatBarrier
 		\item On construit une matrice nommée \emph{matrix} de n+1 lignes (la 1 ère ligne d'indice 0 contient des 0 partout, utile juste pour l'utiliation des équations de réferrence) et maxWeight+1 colone (la 1 ère colone d'indice 0 contient des 0 partout, utile juste pour l'utiliation des équations de réferrence)
 		\item On remplit cette matrice en utilisant les équations de référence (voir section 2.2).
 		\item après la rempli de cette matrice , on trouve le gain maximum dans \emph{matrix[n][maxWeight]}.
 		\item Pour la recherche des objets choisis, on procède à la comparaison des valeurs de la dernière colonne comme suit
 		\begin{enumerate}
 		\item On initialise un pointeur entier k à n, et un pointeur col à  maxWeight.
-		\item on compare le gain matrix[k][col] avec matrix[k+1][col].
-		\item si matrix[k][col] != matrix[k+1][col] alors élément k choisi
-		\item Soustraire le poids $w_{i}$de l'élément choisi de col, on décrémente le k et si k != 1 aller à 2.
+		\item on compare le gain matrix[k][col] avec matrix[k-1][col].
+		\item si matrix[k][col] != matrix[k-1][col] alors élément k choisi
+		\item Soustraire le poids $w_{i}$de l'élément choisi de col, on décrémente le k et si k != 0 aller à 2.
 		\end{enumerate}
 	\end{enumerate}
 	\par{}
@@ -127,16 +139,6 @@
 \includegraphics[scale=1, width=18cm]{../screenshots/1.png}
 	\caption{Page d'acceuil}
 	\end{figure}
-\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=1, width=18cm]{../screenshots/2.png}
-	\caption{Saisie de la taile de sac à dos}	
-	\end{figure}
-	\begin{figure}[h!]
-	\centering
-	\includegraphics[scale=1, width=18cm]{../screenshots/3.png}
-	\caption{Saisie des donnée concernant les objets}
-	\end{figure}
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[scale=1, width=18cm]{../screenshots/4.png}
@@ -145,7 +147,7 @@
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[scale=1, width=18cm]{../screenshots/5.png}
-	\caption{Affichage d'une combinaison des éléments choisi satisfaisant les contraintes}
+	\caption{Affichage d'une combinaison des éléments choisis satisfaisant les contraintes}
 	\end{figure}
 	\newpage	
 	\FloatBarrier
@@ -156,17 +158,17 @@
 	%\subsection{preuve}
 	
 	\paragraph*{preuve}:
-	On doit remplir la matrice de n lignes et p colonnes, don la complexité est O($m^{2}$) tel que m=max(n,p); 	Puis on parcourt la dernière colonne (complexité= O(n)) n est le nombre de lignes
+	On doit remplir la matrice de n lignes et p colonnes, don la complexité est O($m^{2}$) tel que m=max(n,p); 	Puis on parcourt chaque ligne une fois avec une valeur de col bien définie (complexité= O(n)) n est le nombre de lignes
 	\par{}
 	Donc la complexité finale sera : max(O($m^{2}$), O(n)) = $O(m^{2})$
 	\chapter{Conclusion}
 	\par{} 
 	La programmation dynamique sert à résoudre de très grand nombre de problèmes, on remarque cela dans ce TP.
 \par{}	
-	La complexité de la programmation dynamique est polynomial tout en gardant la simplicité de la récursivité avec une complexité base
+	La complexité de la programmation dynamique est polynomial tout en gardant la simplicité de la récursivité avec une complexité base.
 	\par{}
 	La programmation dynamique est un cas de l'intelligence artificielle 
 	\par{}
-	Le problème de sac à dos est l'un des problèmes classiques en informatique, qui reste jusqu'ici valable pour les problèmes qui sont résolu en conséquent.
+	Le problème de sac à dos est l'un des problèmes de classe NP difficiles, classique en informatique, qui reste jusqu' ici valable pour les problèmes de même classe qui sont résolus en conséquent.
 
 \end{document}

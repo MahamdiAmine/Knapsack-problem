@@ -77,12 +77,12 @@
 	\section{Approche de solution}
 %\addcontentsline{toc}{section}{Introduction}
 \par{}
-	Pour résoudre ce problème, on peut utiliser la solution classique ou glouton consistant à essayer tous les cas possible. Cela est innéficace pour des valeurs de n supérieur à 8 par exemple.
+	Pour résoudre ce problème, on peut utiliser la solution classique ou glouton consistant à essayer tous les cas possible. Cela est inéfficace pour des valeurs de n supérieures à 8 par exemple.
 \par{}
 	C'est pour cela que la programmation dynamique est la solution la plus adéquate, et c'est le but de ce TP1.
 	
 	\section{Principe de la programmtion dynamique}
-	La solution récursive est la plus évidente mais la plus coûteuse, la programmation dynamique est par conséquent une amélioration qui consiste à sauvegarder les valeurs des transitions déja calculer pour ne pas répéter les calculs inutile.
+	La solution récursive est la plus évidente mais la plus coûteuse, la programmation dynamique est par conséquent une amélioration qui consiste à sauvegarder les valeurs des transitions déja calculées pour ne pas répéter les calculs inutiles.
 	\par{}
 	Il existe deux approches:
 	\begin{itemize}
@@ -101,7 +101,7 @@
     P_{ij}=\left\{
                 \begin{array}{ll}
                   0 $ si $ i=0$ ou $j=0\\
-                  P_{i-1j} $ si $ j<w_{i} , i>0\\
+                  P_{i-1,j} $ si $ j<w_{i} , i>0\\
                   \max\lbrace P_{i-1,j}, P_{i-1,j-w_{i}}+v_{i} \rbrace
                 \end{array}
               \right.
@@ -135,7 +135,7 @@
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[scale=1, width=18cm]{../screenshots/3.png}
-	\caption{Saisie des donnée concernant les objets}
+	\caption{Saisie des données concernant les objets}
 	\end{figure}
 	\begin{figure}[h!]
 	\centering
@@ -145,10 +145,10 @@
 	\begin{figure}[h!]
 	\centering
 	\includegraphics[scale=1, width=18cm]{../screenshots/5.png}
-	\caption{Affichage d'une combinaison des éléments choisi satisfaisant les contraintes}
+	\caption{Affichage d'une combinaison des éléments choisis satisfaisant les contraintes}
 	\end{figure}
 	\newpage	
-	\float
+	\FloatBarrier
 	\section{Calcul de la complexité}
 	\par{} 
 	
